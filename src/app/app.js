@@ -2,20 +2,26 @@
 
 var React = require('react'),
     Router = require('react-router'),
-    // Router = ReactRouter.Router,
     Route  = Router.Route,
     RouteHandler = Router.RouteHandler,
-    Link = Router.Link,
+    Bootstrap = require('react-bootstrap'),
+    Nav = Bootstrap.Nav,
+    NavItem = Bootstrap.NavItem,
     WynkApp;
-
-
-var Index = require('./components/index');
 
 WynkApp = React.createClass({
     render: function() {
         return (
             /*jshint ignore:start */
-            <div>
+            <div className="container">
+                <h1>Wynk - Mr. Osler</h1>
+                <div className="row">
+                  <Nav bsStyle="pills" activeKey={1}>
+                    <NavItem eventKey={1} href="/home">Home</NavItem>
+                    <NavItem href="/#/signup">Signup</NavItem>
+                    <NavItem href="/home">Login</NavItem>
+                  </Nav>
+                </div>
                 <RouteHandler/>
             </div>
             /*jshint ignore:end */
@@ -32,11 +38,4 @@ var routes = (
 
 Router.run(routes, Router.HashLocation, function(Handler) {
   React.render(<Handler />, document.getElementById('app'))
-})
-
-// React.render(
-//     /*jshint ignore:start */
-//     <WynkApp />,
-//     /*jshint ignore:end */
-//     document.getElementById('app')
-// );
+});

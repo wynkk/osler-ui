@@ -1,6 +1,6 @@
 module.exports = {
   name: 'Hi',
-  command: '/^hi',
+  command: /^hi$/,
   action: function() {
     console.log('hello, boy!');
   }

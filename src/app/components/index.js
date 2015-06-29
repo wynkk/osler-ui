@@ -1,10 +1,57 @@
-var React = require('react');
+var React = require('react'),
+    Navigation = require('react-router').Navigation,
+    Bootstrap = require('react-bootstrap'),
+    Mumble = require('mumble-js'),
+    Mixin = require('../utilities/mixins');
+
+// WIDGETS
+var ChooseMode = require('../widgets/choose_mode'),
+    Chat = require('../widgets/chat'),
+    Voice = require('../widgets/voice');
 
 
 module.exports = React.createClass({
+  mixins: [Mixin.Auth, Navigation],
+  getInitialState() {
+    return {
+      selected_mode: false,
+      isChat: false,
+      isVoice: false
+    }
+  },
+  componentDidMount() {
+    if (!this.isLoggedIn()) {
+      this.transitionTo('login');
+    }
+
+    this.mumble = new Mumble({
+      language: 'en-US',
+      debug: false, // set to true to get some detailed information about what's going on
+
+      // define some commands using regex or a simple string for exact matching
+      commands: [
+        require('../commands/hi')
+      ]
+    });
+  },
+  chooseMode(evt, chooseModeWidget) {
+    var mode = evt.target.getAttribute('data-tag'); // Component to render next.
+    this.setState({selected_mode: true});
+    if (mode == 'chat') {
+      this.setState({isChat: true});
+    } else {
+      this.setState({isVoice: true});
+    }
+  },
   render() {
     return (
-      <h1>Hamza</h1>
+      <div className="row">
+        <div className="col-lg-12">
+          { !this.state.selected_mode ? <ChooseMode callback={this.chooseMode} /> : null }
+          { this.state.isChat ? <Chat /> : null }
+          { this.state.isVoice ? <Voice /> : null }
+        </div>
+      </div>
     )
   }
 });

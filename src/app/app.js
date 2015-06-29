@@ -17,9 +17,9 @@ WynkApp = React.createClass({
                 <h1>Wynk - Mr. Osler</h1>
                 <div className="row">
                   <Nav bsStyle="pills" activeKey={1}>
-                    <NavItem eventKey={1} href="/home">Home</NavItem>
+                    <NavItem eventKey={1} href="/">Home</NavItem>
                     <NavItem href="/#/signup">Signup</NavItem>
-                    <NavItem href="/home">Login</NavItem>
+                    <NavItem href="/#/login">Login</NavItem>
                   </Nav>
                 </div>
                 <RouteHandler/>
@@ -33,6 +33,7 @@ var routes = (
   <Route handler={WynkApp}>
     <Route name="root" path="/" handler={require('./components/index')}></Route>
     <Route name="signup" path="/signup" handler={require('./components/signup')}></Route>
+    <Route name="login" path="/login" handler={require('./components/login')}></Route>
   </Route>
 )
 

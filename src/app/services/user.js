@@ -35,6 +35,18 @@ export class User {
 
   }
 
+  static login(credentials) {
+    var self = this;
+    return new Promise(function(resolve, reject) {
+      $.post('http://localhost:3000/users/login', credentials, function(data, status, xhr) {
+        return resolve({
+          data: data,
+          xhr: xhr
+        });
+      })
+    });
+  }
+
   serialize() {
     var map = {};
     var self = this;
@@ -45,24 +57,10 @@ export class User {
     });
     return map;
   }
+
+  to_json() {
+    return JSON.stringify(this.serialize());
+  }
 }
 
 module.exports = User
-
-// module.exports = React.createClass({
-//   constructor() {
-//
-//   },
-//   save() {
-//
-//   },
-//   destory() {
-//
-//   },
-//   get() {
-//
-//   },
-//   all() {
-//
-//   }
-// });

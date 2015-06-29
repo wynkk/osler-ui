@@ -4,6 +4,7 @@
   "dependencies": {
     "es6-promise": "^2.3.0",
     "jquery": "^2.1.4",
+    "mumble-js": "^1.0.1",
     "react-bootstrap": "^0.23.5"
   },
   "devDependencies": {

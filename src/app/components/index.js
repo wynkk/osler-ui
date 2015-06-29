@@ -1,7 +1,6 @@
 var React = require('react'),
     Navigation = require('react-router').Navigation,
     Bootstrap = require('react-bootstrap'),
-    Mumble = require('mumble-js'),
     Mixin = require('../utilities/mixins');
 
 // WIDGETS
@@ -23,16 +22,6 @@ module.exports = React.createClass({
     if (!this.isLoggedIn()) {
       this.transitionTo('login');
     }
-
-    this.mumble = new Mumble({
-      language: 'en-US',
-      debug: false, // set to true to get some detailed information about what's going on
-
-      // define some commands using regex or a simple string for exact matching
-      commands: [
-        require('../commands/hi')
-      ]
-    });
   },
   chooseMode(evt, chooseModeWidget) {
     var mode = evt.target.getAttribute('data-tag'); // Component to render next.

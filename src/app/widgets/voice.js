@@ -9,7 +9,8 @@ var Voice = React.createClass({
 
       // define some commands using regex or a simple string for exact matching
       commands: [
-        require('../commands/hi')
+        require('../commands/hi'),
+        require('../commands/clock')
       ]
     });
     this.mumble.start();

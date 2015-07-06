@@ -47,6 +47,11 @@ export class User {
     });
   }
 
+  static load() {
+    var user = window.localStorage.getItem('user');
+    return JSON.parse(user);
+  }
+
   serialize() {
     var map = {};
     var self = this;

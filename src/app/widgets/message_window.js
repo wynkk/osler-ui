@@ -30,7 +30,6 @@ var MessageWindow = React.createClass({
     this.loop = new DecisionLoop(self);
   },
   addMessage: function(message) {
-    console.log('>> incoming message: ', message);
     this.setState({messages: this.state.messages.concat([message])});
   },
   handleSubmit(evt, messageBoxWidget) {
@@ -40,9 +39,7 @@ var MessageWindow = React.createClass({
       author: 'Hamza Waqas'
     };
     evt.preventDefault();
-    // this.emit('push');
     this.loop.push(message.text);
-    // DecisionLoop(self);
   },
   render() {
     var createItem = function(message, idx) {

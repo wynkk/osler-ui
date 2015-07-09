@@ -1,4 +1,5 @@
 var React = require('react'),
+    Bootstrap = require('react-bootstrap'),
     Mumble = require('mumble-js');
 
 var Voice = React.createClass({
@@ -13,11 +14,20 @@ var Voice = React.createClass({
         require('../commands/clock')
       ]
     });
+  },
+  _start: function() {
     this.mumble.start();
+  },
+  _stop: function() {
+    this.mumble.stop();
   },
   render() {
     return (
-      <h1>Speak with Osler </h1>
+      <div>
+        <h3>Speak with Osler </h3>
+        <Bootstrap.Button onClick={this._start} bsSize="large" bsStyle="danger">Start</Bootstrap.Button>
+        <Bootstrap.Button bsSize="large">Stop</Bootstrap.Button>
+      </div>
     )
   }
 });

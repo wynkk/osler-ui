@@ -52,25 +52,31 @@ var DecisionLoop = function(widget) {
 
   this.push = function push(text) {
     widget.addMessage({author: 'Hamza Waqas', text: text});
+    var url = 'http://localhost:3000/brain/ask/' + encodeURIComponent(text) + '';
+    var _iId = window.sessionStorage.getItem('i_id');
+    if (_iId) {
+      url += '?i=' + _iId;
+      url += '&text=' + text;
+    }
     $.ajax({
-      //  + '&callback=?'
-      url: 'http://localhost:3000/brain/ask/' + text,
+      url: url,
       method: 'GET',
       headers: {
         'Authorization':'Bearer ' + window.localStorage.getItem('token'),
         'Content-Type':'application/json'
-    },
+      },
       success: function(response) {
-        widget.addMessage({author: 'Osler', text: response._result});
+        console.log(response);
+        var answer = response._result;
+        if (answer.id) {
+          // Save reference for next interaction.
+          window.sessionStorage.setItem('i_id', answer.id);
+          window.sessionStorage.setItem('loop_text', text);
+        }
+        widget.addMessage({author: 'Osler', text: answer.text || answer});
         widget.setState({text_value: ''})
       }
     });
-    // if (!widget._ready) {
-    //   widget._ready = true;
-    //   widget.emit('start', text);
-    // } else {
-    //   widget.emit('message', text);
-    // }
   };
 };
 

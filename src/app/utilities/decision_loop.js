@@ -52,11 +52,14 @@ var DecisionLoop = function(widget) {
 
   this.push = function push(text) {
     widget.addMessage({author: 'Hamza Waqas', text: text});
-    var url = 'http://localhost:3000/brain/ask/' + encodeURIComponent(text) + '';
+    var url = 'http://localhost:3000/brain/ask/';
     var _iId = window.sessionStorage.getItem('i_id');
     if (_iId) {
+      url += encodeURIComponent(window.sessionStorage.getItem('loop_text'));
       url += '?i=' + _iId;
       url += '&text=' + text;
+    } else {
+      url += encodeURIComponent(text);
     }
     $.ajax({
       url: url,
@@ -71,7 +74,14 @@ var DecisionLoop = function(widget) {
         if (answer.id) {
           // Save reference for next interaction.
           window.sessionStorage.setItem('i_id', answer.id);
-          window.sessionStorage.setItem('loop_text', text);
+          if (answer.start) {
+            // It's just start of the conversation. Cache it!
+            window.sessionStorage.setItem('loop_text', text);
+          } else if (answer.end) {
+            // End up the conversation..
+            window.sessionStorage.removeItem('i_id');
+            window.sessionStorage.removeItem('loop_text');
+          }
         }
         widget.addMessage({author: 'Osler', text: answer.text || answer});
         widget.setState({text_value: ''})

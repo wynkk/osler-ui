@@ -21,6 +21,9 @@ var MessageWindow = React.createClass({
       text_value: ''
     }
   },
+  componentWillMount: function() {
+    this.props.register(this);  // Hook up the widget.
+  },
   componentDidMount() {
     var self = this;
     var user = User.load(),
@@ -36,7 +39,7 @@ var MessageWindow = React.createClass({
     var self = this;
     var message = {
       text: messageBoxWidget.refs.text.getValue(),
-      author: 'Hamza Waqas'
+      author: 'You'
     };
     evt.preventDefault();
     this.loop.push(message.text);
@@ -45,12 +48,15 @@ var MessageWindow = React.createClass({
     var createItem = function(message, idx) {
       return <Message key={idx} author={message.author} text={message.text} />
     }
+    var borderStyle = {
+      border: '1px solid'
+    };
     return (
-      <div>
+      <div style={borderStyle}>
         <ListGroup>
         { this.state.messages.map(createItem) }
         </ListGroup>
-        <MessageBox value={this.state.text_value} onSubmit={this.handleSubmit} />
+        {!this.props.hideBox ? <MessageBox value={this.state.text_value} onSubmit={this.handleSubmit} /> : ""}
       </div>
     )
   }

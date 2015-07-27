@@ -1,18 +1,13 @@
 var React = require('react'),
+    MessageWindow = require('../widgets/message_window'),
     Bootstrap = require('react-bootstrap'),
     Mumble = require('mumble-js');
 
 var Voice = React.createClass({
-  componentDidMount() {
+  componentWillMount() {
     this.mumble = new Mumble({
       language: 'en-US',
       debug: true, // set to true to get some detailed information about what's going on
-
-      // define some commands using regex or a simple string for exact matching
-      commands: [
-        require('../commands/hi'),
-        require('../commands/clock')
-      ]
     });
   },
   _start: function() {
@@ -21,12 +16,18 @@ var Voice = React.createClass({
   _stop: function() {
     this.mumble.stop();
   },
+  registerar: function(widget) {
+    var hiCommand = require('../commands/hi');
+    hiCommand.action = hiCommand.action(widget);
+    this.mumble.addCommand(hiCommand.name, hiCommand.command, hiCommand.action);
+  },
   render() {
     return (
       <div>
         <h3>Speak with Osler </h3>
         <Bootstrap.Button onClick={this._start} bsSize="large" bsStyle="danger">Start</Bootstrap.Button>
         <Bootstrap.Button bsSize="large">Stop</Bootstrap.Button>
+        <MessageWindow hideBox='true' register={this.registerar} />
       </div>
     )
   }

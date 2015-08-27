@@ -22,6 +22,8 @@ var MessageWindow = React.createClass({
     }
   },
   componentWillMount: function() {
+    var noop = function() {}
+    this.props.register = this.props.register || noop;
     this.props.register(this);  // Hook up the widget.
   },
   componentDidMount() {

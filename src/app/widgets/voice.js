@@ -7,8 +7,14 @@ var Voice = React.createClass({
   componentWillMount() {
     this.mumble = new Mumble({
       language: 'en-US',
+      callbacks: {
+        start: function () {
+          console.log('>>> starting..');
+        }
+      },
       debug: true, // set to true to get some detailed information about what's going on
     });
+    
   },
   _start: function() {
     this.mumble.start();
@@ -19,7 +25,10 @@ var Voice = React.createClass({
   registerar: function(widget) {
     var hiCommand = require('../commands/hi');
     hiCommand.action = hiCommand.action(widget);
-    this.mumble.addCommand(hiCommand.name, hiCommand.command, hiCommand.action);
+    this.mumble.addCommand('global', '(.*?)', function () {
+      console.log(arguments);
+    })
+    // this.mumble.addCommand(hiCommand.name, hiCommand.command, hiCommand.action);
   },
   render() {
     return (

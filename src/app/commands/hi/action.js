@@ -5,8 +5,8 @@ var Action = function(widget) {
     widget.addMessage({author: 'You', text: 'Hi, dude!'});
     var utterance = new SpeechSynthesisUtterance("My name is Osler. How can I help you?");
     window.speechSynthesis.onvoiceschanged = function() {
-      var daniel = window.speechSynthesis.getVoices().filter(function(v) { return v.name == 'Daniel'; });
-      utterance.voice = daniel[0];
+      var daniel = window.speechSynthesis.getVoices().filter(function(v) { return v.name == 'Daniel'; })[0];
+      utterance.voice = daniel;
       window.speechSynthesis.speak(utterance);
       widget.addMessage({author: 'Osler', text: 'My name is Osler. How can I help you?'});
     };

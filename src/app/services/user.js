@@ -38,7 +38,7 @@ export class User {
   static login(credentials) {
     var self = this;
     return new Promise(function(resolve, reject) {
-      $.post('http://localhost:4000/users/login', credentials, function(data, status, xhr) {
+      $.post(window.API_URL + '/users/login', credentials, function(data, status, xhr) {
         return resolve({
           data: data,
           xhr: xhr

@@ -17,7 +17,7 @@ export class User {
   save() {
     var user = this;
     return new Promise(function(resolve, reject) {
-      $.post('http://localhost:3000' + user.$url + '/signup', user.serialize(), function(data) {
+      $.post(window.API_URL + user.$url + '/signup', user.serialize(), function(data) {
         return resolve(data);
       });
     });

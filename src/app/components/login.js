@@ -15,7 +15,7 @@ module.exports = React.createClass({
     var email = this.refs.email.getValue(),
         password = this.refs.password.getValue();
 
-    User.login({email: email, password: password})
+    User.login({id: email, password: password})
         .then(function(response) {
           var resp = response.data;
           if (resp.success == false) {

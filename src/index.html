@@ -17,7 +17,12 @@
         <!-- endbuild -->
 
         <link type="text/css" rel="stylesheet" href="assets/styles/main.css">
-
+        <script type="text/javascript">
+            window.API_URL = 'http://localhost:4000'
+            if (window.location.indexof('localhost') != -1) {
+                window.API_URL = 'http://demo.wynkk.com:4000';
+            }
+        </script>
     </head>
     <body>
         <!--[if lt IE 8]>

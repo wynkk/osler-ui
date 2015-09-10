@@ -23,11 +23,8 @@ var Voice = React.createClass({
     this.mumble.stop();
   },
   registerar: function(widget) {
-    var hiCommand = require('../commands/hi');
-    hiCommand.action = hiCommand.action(widget);
-    this.mumble.addCommand('global', '(.*?)', function () {
-      console.log(arguments);
-    })
+    var handler = require('../voice_handler');
+    this.mumble.addCommand('global', '(.*?)', handler);
     // this.mumble.addCommand(hiCommand.name, hiCommand.command, hiCommand.action);
   },
   render() {

@@ -5,6 +5,7 @@ var React = require('react'),
     Route  = Router.Route,
     RouteHandler = Router.RouteHandler,
     Bootstrap = require('react-bootstrap'),
+    james = require('james-say'),
     Nav = Bootstrap.Nav,
     NavItem = Bootstrap.NavItem,
     WynkApp;

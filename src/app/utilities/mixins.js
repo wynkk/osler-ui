@@ -1,6 +1,3 @@
-var EventEmitter = require('events').EventEmitter,
-    util = require('util'),
-    _ = require('lodash');
 
 var Auth = {
   isLoggedIn() {
@@ -8,18 +5,11 @@ var Auth = {
   }
 };
 
-var Emitter = function() {
-  var emitter = new EventEmitter;
-  return {
-    emit: emitter.emit,
-    on: emitter.on
-  };
-}();
+
 
 // Emitter.prototype = EventEmitter.prototype;
 
 
 module.exports = {
-  Auth: Auth,
-  Emitter: Emitter
+  Auth: Auth
 }

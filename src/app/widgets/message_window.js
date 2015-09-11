@@ -1,5 +1,4 @@
 var React = require('react'),
-    babble = require('babble'),
     User = require('../services/user'),
     mixins = require('../utilities/mixins'),
     DecisionLoop = require('../utilities/decision_loop'),
@@ -7,11 +6,6 @@ var React = require('react'),
     MessageBox = require('../widgets/message_box'),
     Bootstrap = require('react-bootstrap'),
     ListGroup = Bootstrap.ListGroup;
-
-  var pubnub = babble.messagebus.pubnub({
-    publish_key: 'pub-c-5c5c08f6-27a5-4007-88a1-a1f750ec42ae',    // REPLACE THIS WITH YOUR PUBNUB PUBLISH KEY
-    subscribe_key: 'sub-c-30245bc6-18c6-11e5-9a16-0619f8945a4f'   // REPLACE THIS WITH YOUR PUBNUB SUBSCRIBE KEY
-  });
 
 var MessageWindow = React.createClass({
   mixins: [ mixins.Emitter ],
@@ -28,10 +22,7 @@ var MessageWindow = React.createClass({
   },
   componentDidMount() {
     var self = this;
-    var user = User.load(),
-        listener = null;
-    this.listener = listener = babble.babbler(user.id);
-    this.listener.connect(pubnub);
+    var user = User.load();
     this.loop = new DecisionLoop(self);
   },
   addMessage: function(message) {

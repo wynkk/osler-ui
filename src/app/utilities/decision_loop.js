@@ -5,9 +5,6 @@ var DecisionLoop = function(widget) {
   var listener = widget.listener;
   this._widget = widget;
   this._listener = widget.listener;
-  widget.on('push', function() {
-    console.log('>> message received...');
-  });
 
   this.push = function push(text) {
     widget.addMessage({author: 'Hamza Waqas', text: text});

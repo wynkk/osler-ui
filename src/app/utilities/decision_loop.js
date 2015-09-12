@@ -8,7 +8,7 @@ var DecisionLoop = function(widget) {
 
   this.push = function push(text) {
     widget.addMessage({author: 'Hamza Waqas', text: text});
-    var url = 'http://localhost:4000/brain/ask/';
+    var url = window.API_URL + '/brain/ask/';
     url += encodeURIComponent(text);
     // var _iId = window.sessionStorage.getItem('i_id');
     // if (_iId) {

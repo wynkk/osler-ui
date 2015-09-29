@@ -7,8 +7,8 @@ module.exports = function (shipit) {
 
   shipit.initConfig({
     default: {
-      workspace: '/tmp/guestmetrics',
-      deployTo: '~/guestmetrics',
+      workspace: '/tmp/osler-ui',
+      deployTo: '~/code/osler-ui',
       repositoryUrl: 'https://github.com/10pearls/GuestMetrics-Node.git',
       ignores: ['.git', 'node_modules'],
       rsync: ['--del'],

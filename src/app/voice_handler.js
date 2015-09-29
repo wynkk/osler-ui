@@ -10,14 +10,14 @@
                 "http://vaas.acapela-group.com/Services/UrlMaker?jsoncallback=?",
                {
                   prot_vers: 2, cl_login: "EVAL_VAAS", cl_app: "EVAL_5991276", cl_pwd: "51oc6yv7", 
-                  req_voice:"ryan22k", 
+                  req_voice:"graham22k", 
                   req_text:"Hello world, how's it going ?",
                   //to produce ogg vorbis files, for MP3 you can remove this param.
                   req_snd_type:"OGG"  
                },
                function(data) 
                {
-                  // Data exploitation 
+                  // Data exploitation
                   $("#demo1player").html("<audio src='"+data.snd_url+"' autoplay controls='controls' />");	
                }						
             );

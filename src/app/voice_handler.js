@@ -11,7 +11,7 @@
                {
                   prot_vers: 2, cl_login: "EVAL_VAAS", cl_app: "EVAL_5991276", cl_pwd: "51oc6yv7", 
                   req_voice:"graham22k", 
-                  req_text:"Hello world, how's it going ?",
+                  req_text: response.string || 'Pardon?',
                   //to produce ogg vorbis files, for MP3 you can remove this param.
                   req_snd_type:"OGG"  
                },

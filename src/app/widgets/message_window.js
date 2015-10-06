@@ -35,6 +35,7 @@ var MessageWindow = React.createClass({
       author: 'You'
     };
     evt.preventDefault();
+    messageBoxWidget.setState({value: ''});
     this.loop.push(message.text);
   },
   render() {
@@ -49,7 +50,7 @@ var MessageWindow = React.createClass({
         <ListGroup>
         { this.state.messages.map(createItem) }
         </ListGroup>
-        {!this.props.hideBox ? <MessageBox value={this.state.text_value} onSubmit={this.handleSubmit} /> : ""}
+        {!this.props.hideBox ? <MessageBox onSubmit={this.handleSubmit} /> : ""}
       </div>
     )
   }

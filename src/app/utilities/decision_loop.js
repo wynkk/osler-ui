@@ -8,19 +8,15 @@ var DecisionLoop = function(widget) {
 
   this.push = function push(text) {
     widget.addMessage({author: 'Hamza Waqas', text: text});
-    var url = window.API_URL + '/brain/ask/';
-    url += encodeURIComponent(text);
-    // var _iId = window.sessionStorage.getItem('i_id');
-    // if (_iId) {
-    //   url += encodeURIComponent(window.sessionStorage.getItem('loop_text'));
-    //   url += '?i=' + _iId;
-    //   url += '&text=' + text;
-    // } else {
-    //   url += encodeURIComponent(text);
-    // }
+    var url = window.API_URL + '/brain/ask';
     $.ajax({
       url: url,
-      method: 'GET',
+      method: 'POST',
+      data: JSON.stringify({
+        question: text
+      }),
+      dataType: "json",
+      contentType: "application/json",
       headers: {
         'Authorization':'Bearer ' + window.localStorage.getItem('token'),
         'Content-Type':'application/json'

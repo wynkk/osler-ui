@@ -9,6 +9,11 @@ export class User {
 
     var self = this;
     info = info || [];
+    if (info.token && info.token) {
+      this.__token = info.token;
+      info = info.data;
+    }
+    
     Object.keys(info).forEach(function(key) {
       self[key] = info[key];
     });
